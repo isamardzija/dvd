@@ -1,0 +1,25 @@
+---
+import PostLayout from "../../layouts/PostLayout.astro";
+
+const { title, content } = Astro.props;
+
+export async function getStaticPaths() {
+  let data = await fetch("http://localhost:5000/api/posts");
+  const posts = await data.json();
+
+  return posts.docs.map((post) => {
+    return {
+      params: { slug: post.slug },
+      props: { title: post.title, content: post.content },
+    };
+  });
+}
+---
+
+<PostLayout title={title}>
+    <article>
+        <h1 set:html={title}></h1>
+        <div class="divider"></div>
+        <p set:html={content}></p>
+    </article>
+</PostLayout>

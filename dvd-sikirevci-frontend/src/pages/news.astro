@@ -1,0 +1,43 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const res = await fetch("http://localhost:5000/api/posts");
+const posts = await res.json();
+---
+
+<PageLayout title="Vijesti">
+  <main>
+    {
+      posts.docs.map((post) => (
+        <article>
+          <h2 set:html={post.title} />
+          <span set:html={post.author.name} />
+          <p set:html={post.content} />
+          <a href={`./posts/${post.slug}`}>Vidi više</a>
+        </article>
+      ))
+    }
+  </main>
+</PageLayout>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--gap-big);
+    padding-block: var(--padding-big);
+  }
+  article {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--gap-small);
+    padding-block: var(--padding-medium);
+  }
+  span {
+    background-color: var(--color-neutral-400);
+    padding: var(--padding-small);
+    font-size: var(--fontsize-200);
+    border-radius: var(--borderradius-small);
+    font-weight: var(--fontweight-700);
+  }
+</style>

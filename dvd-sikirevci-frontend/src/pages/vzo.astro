@@ -1,0 +1,12 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const vzoInfo = await fetch(
+  "http://localhost:5000/api/pages/6409e6fbefeed114bc3101de"
+);
+const vzoPage = await vzoInfo.json();
+---
+
+<PageLayout title="VZO Sikirevci" >
+<p set:html={vzoPage.content[0].children[0].text} />
+</PageLayout>

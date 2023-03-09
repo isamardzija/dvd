@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+
+ul {
+    list-style: none;
+  }
+  
+  a {
+      text-decoration: none;
+  }
+  button:hover,
+  a:hover {
+    cursor: pointer;
+  }
+:root {
+  /* Font Family */
+  --fontfamily-primary: "Inter", sans-serif;
+
+  /* Font Weights */
+  --fontweight-400: 400;
+  --fontweight-700: 700;
+
+  /* Font Sizes */
+  --fontsize-400: 1rem;
+  --fontsize-200: 0.825rem;
+
+  /* Color Scheme */
+  --color-neutral-000: #ebebeb;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-400: #d1d1d1;
+  --color-neutral-600: #1e1e1e;
+  --color-primary-400: #ec0406;
+
+  /* Padding */
+  --padding-small: 8px;
+  --padding-medium: 16px;
+  --padding-big: 32px;
+
+  /* Gap */
+  --gap-small: var(--padding-small);
+  --gap-medium: var(--padding-medium);
+  --gap-big: var(--padding-big);
+
+  /* Border Radius */
+  --borderradius-small: 2px;
+  --borderradius-medium: 8px;
+}
+.logo-small {
+  max-height: 50px;
+  aspect-ratio: 1/1;
+}
+
+div.divider {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary-400);
+}

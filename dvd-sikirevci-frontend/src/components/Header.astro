@@ -1,0 +1,40 @@
+<header>
+  <img
+    class="logo-small"
+    src="/images/DVD-Sikirevci-logo.png"
+    alt="Grb DVD-a Sikirevci"
+  />
+  <nav>
+    <ul>
+      <li><a href="/">Početna</a></li>
+      <li><a href="news">Vijesti</a></li>
+      <li><a href="about">O nama</a></li>
+      <li><a href="vzo">VZO</a></li>
+      <li><a href="contact">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: var(--padding-medium);
+  }
+  header > nav {
+    flex-basis: 100%;
+    max-width: 500px;
+  }
+
+  header a {
+    text-decoration: none;
+    color: var(--color-neutral-600);
+    font-weight: var(--fontweight-700);
+  }
+
+  header > nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+  }
+</style>

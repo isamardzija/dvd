@@ -1,15 +1,63 @@
 ---
+import MainLayout from "../layouts/MainLayout.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import CTA from "../components/CTA.astro";
+
+const res = await fetch("http://localhost:5000/api/posts");
+const posts = await res.json();
+
+const history = await fetch(
+  "http://localhost:5000/api/pages/6409e0baefeed114bc31010a"
+);
+const historyPage = await history.json();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="DVD Sikirevci">
+  <Hero />
+  <Section className="news" title="Najnovije">
+    {
+      posts.docs.slice(0, 4).map((post) => (
+        <article>
+          <h2 set:html={post.title} />
+          <span set:html={post.author.name} />
+          <p set:html={post.content} />
+          <a href={`./posts/${post.slug}`}>Vidi više</a>
+        </article>
+      ))
+    }
+    <CTA url="#" />
+  </Section>
+  <Section className="about" title="O nama">
+    {
+      (
+        <article>
+          <h2 set:html={historyPage.title} />
+          {historyPage.content.slice(0,4).map((line) => (
+            <p>
+              {line.children.map((child) => (
+                <span set:html={child.text} />
+              ))}
+            </p>
+          ))}
+          <p set:html={historyPage.content} />
+        </article>
+      )
+    }
+    <CTA url="#" />
+  </Section>
+</MainLayout>
+
+<style>
+  .news {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .news article {
+    flex-basis: 50%;
+  }
+  .about {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const history = await fetch("http://localhost:5000/api/pages/6409e0baefeed114bc31010a");
+const historyPage = await history.json();
+---
+
+<PageLayout title="O nama">
+    <main>
+        {
+            <article>
+              <h2 set:html={historyPage.title} />
+              {historyPage.content.map((line) => (
+                <p>
+                    {line.children.map((child) => (
+                        <span set:html={child.text}/>
+                        ))}
+                </p>
+              ))}
+              <p set:html={historyPage.content} />
+            </article>
+        }
+      </main>
+</PageLayout>
+
+<style>
+    article {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-medium);
+    }
+</style>

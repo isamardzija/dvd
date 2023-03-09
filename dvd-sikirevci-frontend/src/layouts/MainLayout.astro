@@ -1,0 +1,36 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | DVD Sikirevci</title>
+  </head>
+  <body>
+    <Header />
+    
+    <div class="divider"></div>
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style>
+  body {
+    background-color: var(--color-neutral-000);
+    color: var(--color-neutral-600);
+    font-family: var(--fontfamily-primary);
+    max-width: 1280px;
+    margin: auto;
+  }
+  
+</style>
