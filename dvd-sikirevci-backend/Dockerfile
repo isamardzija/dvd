@@ -1,26 +1,20 @@
-FROM node:18.8-alpine as base
+Dockerfile:
 
-FROM base as builder
+FROM node:18.8.0-alpine AS builder
 
-WORKDIR /home/node/app
-COPY package*.json ./
+RUN mkdir -p /app
+WORKDIR /app
+
+COPY package.json  .
+COPY yarn.lock .
+
+RUN apk add git
+
+RUN yarn install
 
 COPY . .
-RUN npm install
-RUN npm run build
 
-FROM base as runtime
-
-ENV NODE_ENV=production
-ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
-
-WORKDIR /home/node/app
-COPY package*.json  ./
-
-RUN npm install --production
-COPY --from=builder /home/node/app/dist ./dist
-COPY --from=builder /home/node/app/build ./build
+RUN yarn build
 
 EXPOSE 3000
-
-CMD ["node", "dist/server.js"]
+CMD [ "yarn", "run", "serve" ]
