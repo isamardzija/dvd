@@ -6,7 +6,7 @@ import Pages from './collections/Pages';
 
 
 export default buildConfig({
-  serverURL: 'http://localhost:5000',
+  serverURL: process.env.PAYLOAD_URL,
   admin: {
     user: Users.slug,
   },
